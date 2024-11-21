@@ -74,7 +74,6 @@ public class Book
         // load a book from a URL.
         // https://docs.oracle.com/javase/tutorial/networking/urls/readingURL.html
         this.title = title;
-
         try {
             URL bookUrl = new URL(url);
             Scanner scanner = new Scanner(bookUrl.openStream());
@@ -91,6 +90,24 @@ public class Book
 
     void writeToFile()
     {
-        // Add code here to write the contents of the book to a file.
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(title + ".txt", true)))
+        {
+            for(int i=0; i<text.size(); i++)
+            {
+                writer.write(text.get(i));
+                writer.newLine();
+         
+            }
+        }
+
+        catch(IOException ex){
+            ex.printStackTrace();
+        }
+        
+    }
+
+    public String[] split(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'split'");
     }
 }
