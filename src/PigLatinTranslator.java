@@ -4,10 +4,21 @@ public class PigLatinTranslator
 {
   public static Book translate(Book input)
   {
-    Book translatedBook = new Book();
+Book translatedBook = new Book();
 
-    
+    translatedBook.setTitle(input.getTitle());
 
+    // Loop through each line in the original book and translate it
+    for (int i = 0; i < input.getLineCount(); i++) {
+        // Get the current line
+        String line = input.getLine(i);
+        
+        // Translate the line using the existing translate method
+        String translatedLine = translate(line);
+        
+        // Add the translated line to the new book
+        translatedBook.appendLine(translatedLine);
+    }
 
     return translatedBook;
   }
